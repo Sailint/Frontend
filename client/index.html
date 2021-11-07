@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <h2>Список дел</h2>
+        <form @submit.prevent="createElement">
+            <input type="text" placeholder="Введите текст" v-model="form.value">
+            <button type="submit">Добавить</button>
+        </form>
+        <div v-if="occasions.length">
+            <div v-for="occasion in occasions">
+                <div>
+                    <h5 :style="{color: occasion.marked ? 'red' : 'black'}">{{occasion.value}}</h5>
+                </div>
+                <button @click="markOccasion(occasion.id)" :disabled="occasion.marked">Отметить как важное</button>
+                <button @click="removeOccasion(occasion.id)">Удалить</button>
+            </div>
+        </div>
+        <div v-else>Ты бездельник</div>
+    </div>
+    <script type="module" src="frontend.js"></script>
+</body>
+</html>
